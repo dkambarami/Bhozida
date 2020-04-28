@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="/css/main.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+    <div class="login-main-text">
+        <h3>Bhozida Intelligent<br> Idea Bank</h3>
+        <br>
+        <p>Welcome</p>
+        <small>Login or register from here to access.</small>
+    </div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form method="post" th:action="@{/login}">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        You have been logged out.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input autofocus="autofocus"
+                           class="form-control"
+                           id="username"
+                           name="username"
+                           placeholder="Username"
+                           type="text">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control"
+                           id="password"
+                           name="password"
+                           placeholder="Password"
+                           type="password">
+                </div>
+                <button class="form-control btn btn-info"
+                        id="login-submit"
+                        name="login-submit"
+                        type="submit"
+                        value="Log In">Login
+                </button>
+                <button class="btn btn-secondary" type="submit">
+                    <a href="/" th:href="@{/registration}">Register </a>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
