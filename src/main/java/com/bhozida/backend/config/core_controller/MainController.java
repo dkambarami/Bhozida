@@ -6,19 +6,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
-    @GetMapping("/")
+    //root is now opportunity view
+   /* @GetMapping("/")
     public String root() {
-        return "index";
-    }
+        //return "index";
+        return "opportunity/list";
+    } */
 
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
     }
-
+ /*
     @GetMapping("/user")
     public String userIndex() {
-        return "user/index";
-    }
+        //return "user/index";
+        return "opportunity/list";
+    } */
 }

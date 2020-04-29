@@ -3,24 +3,27 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <title>Opportunity Detail</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet">
+    <!-- navigation menu -->
+    <div th:replace="fragments/top_nav :: head"></div>
+    <!-- navigation ends menu -->
 </head>
 
 <body>
+
+<!-- navigation menu -->
+<div th:replace="fragments/top_nav :: navbar"></div>
+<!-- navigation ends menu -->
+
+
 <div class="container my-2">
     <h1 class="my-4" th:text="${opportunity.businessName}">
     </h1>
     <!-- Portfolio Item Row -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <img alt="" class="img-fluid" th:src="@{/images/opportunity/doc.png}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h3 class="my-3"><i class="fa fa-bullseye-arrow"></i>Opportunity Detail</h3>
             <p th:text="${opportunity.businessDescription}"></p>
             <h3 class="my-3">Business Details</h3>
@@ -59,11 +62,13 @@
                     <h6 class="text-center" th:text="${opportunity.businessName}"></h6>
                 </div>
             </a>
-
         </div>
-
     </div>
 </div>
+
+<!-- footer stuff-->
+<div th:replace="fragments/top_nav :: footer"></div>
+<!-- footer stuff ends -->
 </body>
 
 </html>

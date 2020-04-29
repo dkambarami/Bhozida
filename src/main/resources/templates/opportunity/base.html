@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- navigation menu -->
+    <div th:replace="fragments/top_nav :: head"></div>
+    <!-- navigation ends menu -->
+</head>
+
+<body>
+<!-- navigation menu -->
+<div th:replace="fragments/top_nav :: navbar"></div>
+<!-- navigation ends menu -->
+
+<div class="container my-2">
+    <h1 class="my-2" th:text="${opportunity.businessName}">
+    </h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img alt="" class="img-fluid" th:src="@{/images/opportunity/doc.png}">
+        </div>
+        <div class="col-md-6">
+            <h3 class="my-3"><i class="fa fa-bullseye-arrow"></i>Opportunity Detail</h3>
+            <p th:text="${opportunity.businessDescription}"></p>
+            <h3 class="my-3">Business Details</h3>
+            <ul>
+                <li>Type : <span th:text="${opportunity.businessType}"></span></li>
+                <li>Product: <span th:text="${opportunity.businessProduct}"></span></li>
+                <li>Market: <span th:text="${opportunity.targetMarket}"></span></li>
+            </ul>
+
+            <h3 class="my-3">Required Skills</h3>
+            <ul>
+                <li>Practicality : <span th:text="${opportunity.practicality}"></span></li>
+                <li>Skills: <span th:text="${opportunity.requiredSkills}"></span></li>
+                <li>Capital: <span th:text="${opportunity.requiredCapital}"></span></li>
+            </ul>
+
+            <h3 class="my-3">Financials</h3>
+            <ul>
+                <li>Expected Sales : <span th:text="${opportunity.expectedSales}"></span></li>
+                <li>Expected Profit: <span th:text="${opportunity.expectedProfit}"></span></li>
+                <li>Expected ROI: <span th:text="${opportunity.expectedRateOfReturn}"></span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Related Opportunities </h3>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4" th:each="opportunity,iterStat: ${similarTypes}"
+             th:if="${iterStat.index} <4">
+            <a th:href="@{/opportunity/view/{id}(id=${opportunity.id})}">
+                <img alt="" class="img-fluid" th:src="@{/images/opportunity/doc.png}">
+                <div class="align">
+                    <h6 class="text-center" th:text="${opportunity.businessName}"></h6>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- footer stuff-->
+<div th:replace="fragments/top_nav :: footer"></div>
+<!-- footer stuff ends -->
+</body>
+
+</html>

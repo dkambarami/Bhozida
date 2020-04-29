@@ -59,7 +59,7 @@ public class OpportunityController {
         return "opportunity/detail";
     }
 
-    @RequestMapping({"/opportunity", "/opportunity/view", "/opportunity/list"})
+    @RequestMapping({"/", "/opportunity", "/opportunity/view", "/opportunity/list"})
     public String showOpportunities(Model model) {
         List<Opportunity> opportunities = opportunityService.findAll();
         model.addAttribute("opportunities", opportunities);
