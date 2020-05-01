@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +67,50 @@ public class OpportunityController {
         return "opportunity/list";
     }
 
+    @RequestMapping(path = "/opportunity/tab")
+    public String addTabbedData(Model model) {
+        List<Opportunity> opportunities = opportunityService.findAll();
+        model.addAttribute("opportunities", opportunities);
+        model.addAttribute("activeLink", "opportunities_tab");
+        return "opportunity/tabbed_view";
+    }
+
+    // opportunities_edit_tab
+    @RequestMapping(path = {"/opportunity/tab/edit", "/opportunity/tab/edit/{id}"})
+    public String editTabbedOpportunityById(Model model, @PathVariable("id") Optional<Long> id) {
+        model.addAttribute("activeLink", "opportunities_edit_tab");
+        if (id.isPresent()) {
+            Opportunity opportunity = opportunityService.findById(id.get());
+            model.addAttribute("opportunity", opportunity);
+        } else {
+            model.addAttribute("opportunity", new Opportunity());
+        }
+        return "opportunity/tabbed_view";
+    }
+
+    //opportunity view tab
+    @RequestMapping("/opportunity/tab/view/{id}")
+    public String showOpportunityTab(@PathVariable Long id, Model model) {
+        Opportunity currentOpportunity = opportunityService.findById(id);
+        model.addAttribute("opportunity", currentOpportunity);
+        List<Opportunity> similarTypes = opportunityService.getSimilarType(id);
+        similarTypes.remove(currentOpportunity);
+        Collections.shuffle(similarTypes);
+        model.addAttribute("activeLink", "opportunity_view");
+        model.addAttribute("similarTypes", similarTypes);
+        return "opportunity/tabbed_view";
+    }
+
+    @RequestMapping(path = "/opportunity/tab/delete/{id}")
+    public String deleteTabOpportunityById(Model model, @PathVariable("id") Long id) {
+        opportunityService.deleteById(id);
+
+        List<Opportunity> opportunities = opportunityService.findAll();
+        model.addAttribute("opportunities", opportunities);
+        return "opportunity/tabbed_view";
+    }
+
+
     @RequestMapping(path = "/opportunity/delete/{id}")
     public String deleteOpportunityById(Model model, @PathVariable("id") Long id) {
         opportunityService.deleteById(id);
@@ -73,6 +118,15 @@ public class OpportunityController {
         List<Opportunity> opportunities = opportunityService.findAll();
         model.addAttribute("opportunities", opportunities);
         return "opportunity/list";
+    }
+
+    @GetMapping("{tab}")
+    public String tab(@PathVariable String tab) {
+        if (Arrays.asList("opportunities_tab", "opportunities_edit_tab", "tab3")
+                .contains(tab)) {
+            return "_" + tab;
+        }
+        return "empty";
     }
 
     @PostMapping("/upload")

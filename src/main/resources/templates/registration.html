@@ -100,6 +100,7 @@
                        th:each="error : ${#fields.errors('terms')}"
                        th:text="${error}">Validation error</p>
                 </div>
+
                 <div class="form-control">
                     <button class="btn btn-success" type="submit">Register</button>
                     <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>

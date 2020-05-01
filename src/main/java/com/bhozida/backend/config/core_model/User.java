@@ -1,5 +1,7 @@
 package com.bhozida.backend.config.core_model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -15,6 +17,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -102,4 +105,5 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+
 }

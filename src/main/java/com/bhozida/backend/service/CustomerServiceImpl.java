@@ -30,9 +30,10 @@ public class CustomerServiceImpl implements CustomerService {
             Optional<Customer> customer = customerRepository.findById(entity.getId());
             if (customer.isPresent()) {
                 Customer newEntity = customer.get();
-                newEntity.setUsername(entity.getPassword());
+                newEntity.setEmail(entity.getEmail());
                 newEntity.setPassword(entity.getPassword());
                 newEntity = customerRepository.save(newEntity);
+
                 return newEntity;
             } else {
                 entity = customerRepository.save(entity);

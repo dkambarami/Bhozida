@@ -1,24 +1,28 @@
 package com.bhozida.backend.model;
 
+import com.bhozida.backend.config.core_model.Role;
+import com.bhozida.backend.config.core_model.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Data
-@NoArgsConstructor
 @Component
 @Entity
-public class Customer implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
-    private String password;
+public class Customer extends User implements Serializable {
+    public Customer() {
+        super();
+    }
+
+    public Customer(String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password);
+    }
+
+    public Customer(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+        super(firstName, lastName, email, password, roles);
+    }
 
 }

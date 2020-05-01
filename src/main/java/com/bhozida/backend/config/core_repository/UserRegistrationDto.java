@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.AssertTrue;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class UserRegistrationDto {
     private String confirmPassword;
     private String email;
     private String confirmEmail;
+    private LocalDate date_of_birth;
     @AssertTrue
     private Boolean terms;
 
