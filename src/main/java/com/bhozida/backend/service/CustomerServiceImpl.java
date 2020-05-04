@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer addUpdate(Customer entity) {
-        if (entity.getId() == null) {
+            if (entity.getId() == null) {
             entity = customerRepository.save(entity);
             return entity;
         } else {
