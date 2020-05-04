@@ -12,7 +12,11 @@ import java.io.Serializable;
 @Component
 @Entity
 public class Opportunity implements Serializable {
-    @Id
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String businessName;
